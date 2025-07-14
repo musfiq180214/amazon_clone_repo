@@ -1,3 +1,4 @@
+import 'package:amazon_clone/controllers/order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
@@ -63,11 +64,27 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                // TODO: Proceed to order simulation or summary screen
-              },
-              child: Text('Checkout'),
-            ),
+  onPressed: () {
+    final cartController = Get.find<CartController>();
+    final orderController = Get.find<OrderController>();
+
+    if (cartController.cartItems.isEmpty) {
+      Get.snackbar('Empty Cart', 'Please add items before checkout');
+      return;
+    }
+
+    // Place the order
+    orderController.placeOrder(cartController.cartItems);
+
+    // Clear cart after checkout
+    cartController.clearCart();
+
+    // Show confirmation
+    Get.snackbar('Order Placed', 'Your order has been placed successfully');
+  },
+  child: Text('Checkout'),
+),
+
           ],
         );
       }),

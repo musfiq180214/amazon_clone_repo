@@ -24,6 +24,21 @@ class AuthService {
     }
   }
 
+  Future<bool> register(Map<String, dynamic> userData) async {
+  final response = await http.post(
+    Uri.parse('https://fakestoreapi.com/users'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode(userData),
+  );
+
+  if (response.statusCode == 200 || response.statusCode == 201) {
+    return true;
+  } else {
+    throw Exception('Failed to register');
+  }
+}
+
+
   void logout() {
     _box.remove('token');
   }

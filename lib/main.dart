@@ -41,6 +41,7 @@ void main() async {
   await GetStorage.init();
   Get.put(AuthController()); // Put AuthController here to initialize
   Get.put(CartController());  // Register CartController globally
+  Get.put(OrderController()); // Register OrderController globally
   runApp(MyApp());
 }
 

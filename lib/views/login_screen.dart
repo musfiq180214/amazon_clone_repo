@@ -1,3 +1,4 @@
+import 'package:amazon_clone/views/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../services/auth_service.dart';
@@ -58,6 +59,11 @@ if (user != null) {
                   ? CircularProgressIndicator(color: Colors.white)
                   : Text('Login'),
             ),
+
+            TextButton(
+  onPressed: () => Get.to(() => RegisterScreen()),
+  child: Text('Don\'t have an account? Register'),
+  )
           ],
         ),
       ),
